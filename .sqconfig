@@ -1,0 +1,33 @@
+;
+mount = sqstd=./scripts/std
+mount = darg=./scripts/daRg
+mount = dgite=./ui/dargite
+
+base_path = .
+
+use_real_root = no
+
+use_modules = yes
+use_libs_by_default = yes
+sqstd_register_mathlib = false
+sqstd_register_stringlib = false
+register_std_math_native_module = yes
+register_std_string_native_module = yes
+register_dir_extensions = yes
+sqstd_register_bloblib_native_module = yes
+sqstd_register_iolib_native_module = yes
+sqstd_register_systemlib_native_module = yes
+sqrat_bind_dagor_logsys = yes
+sqrat_bind_dagor_3d = yes
+register_string_extensions = yes
+register_math_classes = no
+register_reg_exp = yes
+register_utf8 = yes
+register_data_block = no
+register_dagor_basic_api = yes
+register_json = yes
+sqstd_register_systemlib = no
+extend_sq_base_lib = yes
+register_base_lib_extras = yes
+sqrat_bind_dagor_math = yes
+register_sqrat_reg_exp = yes

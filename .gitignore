@@ -1,0 +1,11 @@
+# ignore dagor engine logs
+.logs
+
+fonts
+shaders
+webcache
+
+# ignore binaries
+*.dll
+*.bin 
+*.exe

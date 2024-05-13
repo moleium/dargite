@@ -1,0 +1,68 @@
+initScript:t="init.nut"
+script:t="sample/main.nut"
+
+__allow_force_apply_all:b=yes
+
+drawFps:b=no
+utf8mode:b=yes
+joystickRemap360:b=yes
+guiBufQuads:i = 160000
+
+mountPoints {
+  darg{ 
+    forSource:t="./scripts/daRg";
+  }
+  sqstd{
+    forSource:t="./scripts/std";
+  }
+  dgite{
+    forSource:t="./ui/dargite";
+  }
+}
+
+video{
+  driver:t="dx11"
+}
+
+graphics{
+  limitfps:b=yes
+}
+
+workcycle{
+  act_rate:i=30
+}
+
+gui-settings{
+  KeyRepeater{
+    useKeyRepeater:b=yes
+
+    keyRepeaterRepeatKeyboard:b=no
+    keyRepeaterRepeatJoystick:b=yes
+
+    repeatDelay:i=1000
+    repeatFrequency:i=30
+
+    Accelerator{
+      repeatDelay:i=500
+      buildUpTime:i=1000
+
+      repeatFinalFrequency:i=3000
+    }
+  }
+}
+
+-effects {
+  res:t="resPacks.blk"
+  frameBlk:t=""
+  sceneBlk:t=""
+}
+
+debug {
+  useVromSrc:b=yes
+  http_server:b=yes
+  vromfsFirstPriority:b=no
+}
+
+basevromfs{
+  v:t=darg.vromfs.bin
+}
