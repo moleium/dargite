@@ -9,3 +9,6 @@ webcache
 *.dll
 *.bin 
 *.exe
+
+# ignore demo files
+example/demo.nut

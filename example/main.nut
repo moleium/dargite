@@ -8,13 +8,32 @@ let styles = {
     halign = ALIGN_CENTER,
     valign = ALIGN_CENTER
   }
+
+  panel = {
+    halign = ALIGN_CENTER,
+    valign = ALIGN_CENTER,
+    gap = 12,
+  }
 }
 
-let panel = [
-  ui.flow([
-    ui.text("Hello")
-  ], FLOW_VERTICAL, colors.background, styles.centered)
-]
+let panel = ui.flow([
+  ui.text("This is a text")
+
+  ui.button("This is merely a button", {
+    onClick = function() {
+      print("Start button clicked")
+    }
+
+    onHover = function(on) {
+      print("Start button hovered")
+    }
+  })
+
+  ui.full_rect([
+    ui.text("This is a full rect", colors.black)
+  ], 200, 200, colors.green, styles.centered)
+
+], FLOW_VERTICAL, colors.background, styles.panel)
 
 let customCursor = Cursor({
   rendObj = ROBJ_VECTOR_CANVAS,
