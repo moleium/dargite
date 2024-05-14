@@ -25,6 +25,14 @@ let styles = {
 let panel = ui.flow([
   ui.text("This is a text"),
 
+  ui.checkbox({
+    state = Watched(true),
+    text = "A Checkbox",
+    onClick = function() {
+      vlog("Checkbox clicked")
+    }
+  })
+  
   ui.input(
     Watched("This is an input"), 
     [18, 4], 
@@ -34,11 +42,11 @@ let panel = ui.flow([
 
   ui.button("This is merely a button", {
     onClick = function() {
-      print("Start button clicked")
+      vlog("Start button clicked")
     },
 
     onHover = function(on) {
-      print("Start button hovered")
+      //vlog("Start button hovered")
     }
   }),
 

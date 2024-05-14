@@ -1,7 +1,7 @@
 from "%darg/ui_imports.nut" import *
-import "gamelib.input" as input
 
 let { colors } = require("colors.nut")
+let chk = require("components/checkbox.nut")
 
 /*
 * TODO:
@@ -11,6 +11,17 @@ let { colors } = require("colors.nut")
 * - ui.button
 * - ui.input
 */
+
+ let defBoxStyle = {
+  padding = hdpx(3)
+  borderWidth = hdpx(1)
+  borderRadius = hdpx(2)
+  color = Color(150,150,150)
+  hoverColor = Color(250,250,250)
+}
+
+let defStyle = {}
+let defTextStyle = {}
 
 let ui = {
   rect = function(children=[], size=[], styles={}) {
@@ -101,6 +112,25 @@ let ui = {
   
     return styles.__merge(defaultStyles);
   },
+
+  checkbox = function(params={}, styles = chk.defBoxStyle) {
+    let { state, text, onClick } = params
+
+    let checkbox = chk.checkbox({
+      state    = state,
+      text     = text,
+      onClick  = onClick,
+      boxStyle = styles
+    });
+
+    let panel = @() { children = [checkbox] };
+
+    return {
+      rendObj = ROBJ_SOLID,
+      color = colors.transparent,
+      children = panel
+    };
+  }
 
   image = function(image, size=[10,10], styles={}) {
     return styles.__merge({
