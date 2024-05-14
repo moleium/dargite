@@ -1,13 +1,33 @@
 from "%darg/ui_imports.nut" import *
+import "gamelib.input" as input
+
 let { colors } = require("colors.nut")
 
+/*
+* TODO:
+* Fix where we can't reference a function in default styles
+* Because the table is defined as lambda
+* REFERENCES:
+* - ui.button
+* - ui.input
+*/
+
 let ui = {
-  full_rect = function(children=[], width=0, height=0, color=colors.black, styles={}) {
+  rect = function(children=[], size=[], styles={}) {
     return styles.__merge({
-      size = [width, height],
-      color = color,
+      rendObj = ROBJ_BOX,
+      fillColor = colors.transparent,
+      size = [sh(size[0]), sh(size[1])],
+      children = children
+    });
+  },
+
+  full_rect = function(children=[], size=[], color=colors.black, styles={}) {
+    return styles.__merge({
+      size = [sh(size[0]), sh(size[1])],
+      fillColor = color,
       children = children,
-      rendObj = ROBJ_SOLID
+      rendObj = ROBJ_BOX
     });
   },
 
@@ -21,12 +41,46 @@ let ui = {
   },
 
   text = function(text, color=colors.white, styles={}) {
-    return styles.__merge({
+    return @() styles.__merge({
       rendObj = ROBJ_TEXT,
       color = color,
       text = text
     });
   },
+
+  input = function(text_state, size, color=colors.white, styles={}) {
+    return @() styles.__merge({
+      rendObj = ROBJ_BOX,
+      fillColor = color,
+      padding = 5,
+      size = [sh(size[0]), sh(size[1])],
+
+      watch = [text_state],
+
+      // TODO: Fix this, use ui.text instead of duplicating
+      children = {
+        rendObj = ROBJ_TEXT,
+        vplace = ALIGN_CENTER,
+        hplace = ALIGN_CENTER,
+        size = [flex(), fontH(100)],
+
+        behavior = Behaviors.TextInput,
+
+        text = text_state.value,
+        key = text_state,
+
+        onChange = function(val) {
+          text_state.update(val)
+        },
+        onReturn = function() {
+          text_state.update("")
+        },
+        onEscape = function() {
+          text_state.update("")
+        }
+      }
+    })
+  }
 
   button = function(text, params={}, styles={}) {
     let defaultStyles = {
@@ -48,11 +102,11 @@ let ui = {
     return styles.__merge(defaultStyles);
   },
 
-  image = function(image, width=10, height=10, styles={}) {
+  image = function(image, size=[10,10], styles={}) {
     return styles.__merge({
       rendObj = ROBJ_IMAGE,
       image = Picture(image),
-      size = [sh(width), sh(height)]
+      size = [sh(size[0]), sh(size[1])]
     });
   },
 
@@ -62,7 +116,7 @@ let ui = {
       color = colors.transparent,
       rendObj = ROBJ_SOLID
     };
-  }
+  },
 };
 
 return {

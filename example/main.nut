@@ -18,6 +18,11 @@ let styles = {
 
 let panel = ui.flow([
   ui.text("This is a text")
+  ui.input(Watched("This is an input"), [18, 4], colors.black, {
+    borderWidth = 1,
+    borderRadius = 4,
+    borderColor = colors.green
+  })
 
   ui.button("This is merely a button", {
     onClick = function() {
@@ -28,10 +33,17 @@ let panel = ui.flow([
       print("Start button hovered")
     }
   })
-
+  
   ui.full_rect([
     ui.text("This is a full rect", colors.black)
-  ], 200, 200, colors.green, styles.centered)
+  ], [20, 20], colors.green, styles.centered)
+
+  ui.rect([
+    ui.text("Unfilled", colors.black)
+  ], [20, 20], styles.centered.__merge({
+    borderWidth = 1,
+    borderColor = colors.blue
+  }))
 
 ], FLOW_VERTICAL, colors.background, styles.panel)
 
