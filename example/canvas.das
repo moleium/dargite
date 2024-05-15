@@ -21,7 +21,7 @@ struct CanvasParams
 */
 [export]
 def setup_data(props: Properties&; var storage : CanvasParams&)
-  storage.color = props |> getColor("dasTextColor", E3DCOLOR(0x212121))
+  storage.color = props |> getColor("color", E3DCOLOR(0x212121))
 
 /*
 * This function is called every frame to draw the object. This
