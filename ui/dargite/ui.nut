@@ -51,6 +51,17 @@ let ui = {
     });
   },
 
+  canvas = function(children=[], params={}, size=[10, 10], styles={}) {
+    return styles.__merge({
+      rendObj = ROBJ_DAS_CANVAS,
+      script = params.script,
+      drawFunc = params.draw,
+      setupFunc = params.setup,
+      size = [sh(size[0]), sh(size[1])],
+      children = children
+    });
+  },
+
   text = function(text, color=colors.white, styles={}) {
     return @() styles.__merge({
       rendObj = ROBJ_TEXT,

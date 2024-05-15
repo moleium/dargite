@@ -18,6 +18,9 @@ mountPoints {
   dgite{
     forSource:t="./ui/dargite";
   }
+  main{
+    forSource:t="./example";
+  }
 }
 
 video{

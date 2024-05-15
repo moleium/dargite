@@ -2,6 +2,7 @@
 mount = sqstd=./scripts/std
 mount = darg=./scripts/daRg
 mount = dgite=./ui/dargite
+mount = main=./example
 
 base_path = .
 

@@ -2,25 +2,9 @@ from "%darg/ui_imports.nut" import *
 
 let { ui } = require("%dgite/ui.nut")
 let { colors } = require("%dgite/colors.nut")
+let { styles } = require("style.nut")
 
-let styles = {
-  centered = {
-    halign = ALIGN_CENTER,
-    valign = ALIGN_CENTER
-  },
-
-  panel = {
-    halign = ALIGN_CENTER,
-    valign = ALIGN_CENTER,
-    gap = 12,
-  },
-
-  input = {
-    borderWidth = 1,
-    borderRadius = 4,
-    borderColor = colors.green
-  }
-}
+let canvasDas = load_das("%main/canvas.das")
 
 let panel = ui.flow([
   ui.text("This is a text"),
@@ -43,10 +27,6 @@ let panel = ui.flow([
   ui.button("This is merely a button", {
     onClick = function() {
       vlog("Start button clicked")
-    },
-
-    onHover = function(on) {
-      //vlog("Start button hovered")
     }
   }),
 
@@ -67,6 +47,15 @@ let panel = ui.flow([
       borderColor = colors.blue
     })
   )
+
+  ui.canvas([
+    ui.text("Rect from Das")
+  ], {
+    script = canvasDas,
+    draw = "draw_rect",
+    setup = "setup_data"
+  }, [20, 20], styles.centered)
+
 ], FLOW_VERTICAL, colors.background, styles.panel)
 
 let customCursor = Cursor({
