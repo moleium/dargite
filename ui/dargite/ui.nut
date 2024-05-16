@@ -12,17 +12,6 @@ let chk = require("components/checkbox.nut")
 * - ui.input
 */
 
- let defBoxStyle = {
-  padding = hdpx(3)
-  borderWidth = hdpx(1)
-  borderRadius = hdpx(2)
-  color = Color(150,150,150)
-  hoverColor = Color(250,250,250)
-}
-
-let defStyle = {}
-let defTextStyle = {}
-
 let ui = {
   rect = function(children=[], size=[], styles={}) {
     return styles.__merge({
