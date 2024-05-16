@@ -51,6 +51,19 @@ let ui = {
     });
   },
 
+  line = function(start, end, size=[10, 10], styles={}) {
+    return styles.__merge({
+      rendObj = ROBJ_VECTOR_CANVAS,
+      size = [sh(size[0]), sh(size[1])],
+      lineWidth = hdpx(2.5),
+      color = Color(50, 200, 255),
+      fillColor = Color(122, 1, 0, 0),
+      commands = [
+        [VECTOR_LINE, start[0], start[1], end[0], end[1]]
+      ]
+    });
+  },
+
   text = function(text, color=colors.white, styles={}) {
     return @() styles.__merge({
       rendObj = ROBJ_TEXT,
