@@ -3,15 +3,6 @@ from "%darg/ui_imports.nut" import *
 let { colors } = require("colors.nut")
 let chk = require("components/checkbox.nut")
 
-/*
-* TODO:
-* Fix where we can't reference a function in default styles
-* Because the table is defined as lambda
-* REFERENCES:
-* - ui.button
-* - ui.input
-*/
-
 let ui = {
   rect = function(children=[], size=[], styles={}) {
     return styles.__merge({
@@ -106,7 +97,8 @@ let ui = {
   }
 
   button = function(text, params={}, styles={}) {
-    let defaultStyles = {
+    let self = this;
+    return @() styles.__merge({
       margin = [hdpx(1), hdpx(10)],
       borderColor = colors.white,
       borderRadius = hdpx(4),
@@ -118,11 +110,9 @@ let ui = {
       onHover = params?.onHover,
       rendObj = ROBJ_BOX,
       children = [
-        this.text(text, colors.white)
+        self.text(text, colors.white)
       ]
-    };
-  
-    return styles.__merge(defaultStyles);
+    });
   },
 
   checkbox = function(params={}, styles = chk.defBoxStyle) {
