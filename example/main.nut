@@ -20,7 +20,6 @@ let panel = ui.flow([
   ui.input(
     Watched("This is an input"), 
     [18, 4], 
-    colors.black, 
     styles.input
   ),
 

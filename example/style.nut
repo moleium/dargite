@@ -17,7 +17,9 @@ let styles = {
   input = {
     borderWidth = 1,
     borderRadius = 4,
-    borderColor = colors.green
+    borderColor = colors.green,
+    fillColor = colors.black,
+    color = colors.white,
   }
 }
 

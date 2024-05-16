@@ -62,38 +62,38 @@ let ui = {
     });
   },
 
-  input = function(text_state, size, color=colors.white, styles={}) {
-    return @() styles.__merge({
+  input = function(text_state, size, styles={}) {
+    let { fillColor, color } = styles;
+    
+    let input_text = this.text(text_state.value, color, {
+      vplace = ALIGN_CENTER,
+      hplace = ALIGN_CENTER,
+      size = [flex(), fontH(100)],
+      behavior = Behaviors.TextInput,
+  
+      onChange = function(val) {
+        text_state.update(val)
+      },
+      onReturn = function() {
+        text_state.update("")
+      },
+      onEscape = function() {
+        text_state.update("")
+      }
+    });
+  
+    let input_box = @() styles.__merge({
       rendObj = ROBJ_BOX,
-      fillColor = color,
+      fillColor = fillColor,
       padding = 5,
       size = [sh(size[0]), sh(size[1])],
-
+  
       watch = [text_state],
-
-      // TODO: Fix this, use ui.text instead of duplicating
-      children = {
-        rendObj = ROBJ_TEXT,
-        vplace = ALIGN_CENTER,
-        hplace = ALIGN_CENTER,
-        size = [flex(), fontH(100)],
-
-        behavior = Behaviors.TextInput,
-
-        text = text_state.value,
-        key = text_state,
-
-        onChange = function(val) {
-          text_state.update(val)
-        },
-        onReturn = function() {
-          text_state.update("")
-        },
-        onEscape = function() {
-          text_state.update("")
-        }
-      }
-    })
+  
+      children = [input_text]
+    });
+  
+    return input_box;
   }
 
   button = function(text, params={}, styles={}) {
