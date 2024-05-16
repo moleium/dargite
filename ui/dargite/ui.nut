@@ -56,8 +56,7 @@ let ui = {
       rendObj = ROBJ_VECTOR_CANVAS,
       size = [sh(size[0]), sh(size[1])],
       lineWidth = hdpx(2.5),
-      color = Color(50, 200, 255),
-      fillColor = Color(122, 1, 0, 0),
+      color = colors.white,
       commands = [
         [VECTOR_LINE, start[0], start[1], end[0], end[1]]
       ]
