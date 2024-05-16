@@ -29,7 +29,7 @@ let panel = ui.flow([
     }
   }),
 
-  ui.full_rect([
+  ui.rect([
       ui.text("This is a full rect", colors.black)
     ], 
     [20, 20], 
@@ -41,6 +41,7 @@ let panel = ui.flow([
       ui.text("Unfilled", colors.black)
     ], 
     [20, 20], 
+    colors.transparent,
     styles.centered.__merge({
       borderWidth = 1,
       borderColor = colors.blue

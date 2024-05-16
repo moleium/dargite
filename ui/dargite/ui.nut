@@ -4,16 +4,7 @@ let { colors } = require("colors.nut")
 let chk = require("components/checkbox.nut")
 
 let ui = {
-  rect = function(children=[], size=[], styles={}) {
-    return styles.__merge({
-      rendObj = ROBJ_BOX,
-      fillColor = colors.transparent,
-      size = [sh(size[0]), sh(size[1])],
-      children = children
-    });
-  },
-
-  full_rect = function(children=[], size=[], color=colors.black, styles={}) {
+  rect = function(children=[], size=[], color=colors.black, styles={}) {
     return styles.__merge({
       size = [sh(size[0]), sh(size[1])],
       fillColor = color,
