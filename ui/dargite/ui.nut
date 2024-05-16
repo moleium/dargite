@@ -4,8 +4,9 @@ let { colors } = require("colors.nut")
 let chk = require("components/checkbox.nut")
 
 let ui = {
+  // TODO: Add a way to specify the size as flex()
   rect = function(children=[], size=[], color=colors.black, styles={}) {
-    return styles.__merge({
+    return @() styles.__merge({
       size = [sh(size[0]), sh(size[1])],
       fillColor = color,
       children = children,
@@ -55,8 +56,8 @@ let ui = {
 
   input = function(text_state, size, styles={}) {
     let { fillColor, color } = styles;
-    
-    let input_text = this.text(text_state.value, color, {
+
+    let inputText = this.text(text_state.value, color, {
       vplace = ALIGN_CENTER,
       hplace = ALIGN_CENTER,
       size = [flex(), fontH(100)],
@@ -73,18 +74,12 @@ let ui = {
       }
     });
   
-    let input_box = @() styles.__merge({
-      rendObj = ROBJ_BOX,
-      fillColor = fillColor,
-      padding = 5,
-      size = [sh(size[0]), sh(size[1])],
-  
-      watch = [text_state],
-  
-      children = [input_text]
+    let boxStyles = styles.__merge({
+      watch   = [text_state],
+      padding = 5
     });
-  
-    return input_box;
+
+    return this.rect([inputText], size, fillColor, boxStyles);
   }
 
   button = function(text, params={}, styles={}) {
