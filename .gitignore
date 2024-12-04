@@ -1,0 +1,12 @@
+.logs
+
+fonts/
+shaders/
+webcache/
+*.exe
+*.dll
+*.bin
+
+params.blk
+
+demo*
